@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plano — Estudio Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF1EA;
+    --paper-raised:#F7F8F4;
+    --grid-line:#C7D1C6;
+    --hair:#9AA99B;
+    --ink:#152136;
+    --ink-soft:#48576C;
+    --ink-faint:#7C8A96;
+    --accent:#C8811A;
+    --accent-ink:#7A4E06;
+    --accent-soft:#EAD9B3;
+    --stamp:#A6392C;
+    --stamp-soft:#E7CFC6;
+    --shadow: 0 1px 0 rgba(21,33,54,0.06);
+    --radius: 2px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0E2038;
+      --paper-raised:#132A48;
+      --grid-line:#24405F;
+      --hair:#3A5876;
+      --ink:#EAF1F5;
+      --ink-soft:#AFC4D6;
+      --ink-faint:#7E96AC;
+      --accent:#F0B429;
+      --accent-ink:#FFD989;
+      --accent-soft:#3C3315;
+      --stamp:#E2685A;
+      --stamp-soft:#3A211C;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E2038;
+    --paper-raised:#132A48;
+    --grid-line:#24405F;
+    --hair:#3A5876;
+    --ink:#EAF1F5;
+    --ink-soft:#AFC4D6;
+    --ink-faint:#7E96AC;
+    --accent:#F0B429;
+    --accent-ink:#FFD989;
+    --accent-soft:#3C3315;
+    --stamp:#E2685A;
+    --stamp-soft:#3A211C;
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      repeating-linear-gradient(0deg, var(--grid-line) 0 1px, transparent 1px 88px),
+      repeating-linear-gradient(90deg, var(--grid-line) 0 1px, transparent 1px 88px),
+      var(--paper);
+    background-attachment: fixed;
+    color:var(--ink);
+    font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Big Shoulders Display", "Arial Narrow", sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    text-wrap:balance;
+    margin:0;
+    color:var(--ink);
+  }
+  .mono{ font-family:"IBM Plex Mono", ui-monospace, monospace; }
+  .label{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  a{ color:inherit; }
+  img{ max-width:100%; }
+  [hidden]{ display:none !important; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding-inline:20px;
+  }
+
+  /* ---------- Title block header ---------- */
+  header.titleblock{
+    position:sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index:20;
+    background:var(--paper-raised);
+    border-bottom:2px solid var(--ink);
+    box-shadow: var(--shadow);
+  }
+  .titleblock-inner{
+    max-width:1080px;
+    margin:0 auto;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .wordmark{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  .wordmark .mark{
+    font-family:"Big Shoulders Display", sans-serif;
+    font-weight:800;
+    font-size:1.6rem;
+    letter-spacing:0.03em;
+  }
+  .wordmark .mark .box{
+    display:inline-block;
+    border:2px solid var(--ink);
+    padding:0 6px;
+    margin-right:2px;
+  }
+  .wordmark .sub{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.7rem;
+    color:var(--ink-faint);
+    letter-spacing:0.08em;
+  }
+  nav.top{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+  }
+  nav.top a{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    text-decoration:none;
+    color:var(--ink-soft);
+    padding-bottom:3px;
+    border-bottom:1px solid transparent;
+  }
+  nav.top a:hover, nav.top a:focus-visible{
+    color:var(--ink);
+    border-bottom-color:var(--accent);
+    outline:none;
+  }
+  .btn-cta{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    text-decoration:none;
+    color:var(--paper-raised);
+    background:var(--ink);
+    padding:9px 16px;
+    border:2px solid var(--ink);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    white-space:nowrap;
+  }
+  .btn-cta:hover, .btn-cta:focus-visible{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#1a1204;
+    outline:none;
+  }
+  .btn-cta.ghost{
+    background:transparent;
+    color:var(--ink);
+  }
+  .btn-cta.ghost:hover, .btn-cta.ghost:focus-visible{
+    background:var(--ink);
+    color:var(--paper-raised);
+  }
+
+  /* ---------- Sections ---------- */
+  section{ padding-block: 56px; }
+  section + section{ border-top:1px solid var(--hair); }
+
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow .tag{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    color:var(--accent-ink);
+    background:var(--accent-soft);
+    border:1px solid var(--accent);
+    padding:3px 8px;
+  }
+  .eyebrow .rule{
+    flex:1;
+    height:1px;
+    background:var(--hair);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap:48px;
+    align-items:center;
+    padding-block: 64px 56px;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 4.4vw, 3.4rem);
+    line-height:1.02;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--accent-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+  }
+  .hero p.lede{
+    margin-top:18px;
+    max-width:46ch;
+    font-size:1.08rem;
+    color:var(--ink-soft);
+  }
+  .hero .ctas{
+    margin-top:28px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .hero .note{
+    margin-top:18px;
+    font-size:0.82rem;
+    color:var(--ink-faint);
+  }
+  .diagram{ width:100%; height:auto; }
+  .diagram .ink-line{ stroke:var(--ink-soft); }
+  .diagram .ink-fill{ fill:var(--ink); }
+  .diagram .paper-fill{ fill:var(--paper-raised); }
+  .diagram .dim{ stroke:var(--hair); stroke-width:1; }
+  .diagram .dim-text{ fill:var(--ink-faint); font-family:"IBM Plex Mono", monospace; font-size:9px; letter-spacing:0.03em; }
+  .diagram .accent-fill{ fill:var(--accent); }
+  .diagram .card-fill{ fill:var(--paper); stroke:var(--hair); stroke-width:1; }
+
+  /* ---------- Signal strip ---------- */
+  .signals{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0;
+    border:1px solid var(--hair);
+  }
+  .signals .cell{
+    padding:20px 22px;
+    border-left:1px solid var(--hair);
+  }
+  .signals .cell:first-child{ border-left:none; }
+  .signals .cell .num{
+    font-family:"IBM Plex Mono", monospace;
+    color:var(--accent-ink);
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+  }
+  .signals .cell p{
+    margin:8px 0 0;
+    font-size:0.95rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Plates (services) ---------- */
+  h2.section-title{
+    font-size:clamp(1.6rem, 3vw, 2.2rem);
+  }
+  .section-sub{
+    margin-top:10px;
+    max-width:60ch;
+    color:var(--ink-soft);
+  }
+  .plates{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  .plate{
+    border:1.5px solid var(--ink);
+    background:var(--paper-raised);
+    display:flex;
+    flex-direction:column;
+    position:relative;
+  }
+  .plate.featured{
+    border-color:var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .plate-head{
+    padding:16px 20px;
+    border-bottom:1px solid var(--hair);
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .plate-head .code{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.75rem;
+    color:var(--ink-faint);
+  }
+  .plate-head .flag{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    background:var(--accent-soft);
+    padding:2px 7px;
+    border:1px solid var(--accent);
+  }
+  .plate-body{ padding:22px 20px; flex:1; display:flex; flex-direction:column;}
+  .plate-body h3{
+    font-size:1.5rem;
+  }
+  .plate-body .for{
+    margin-top:6px;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+  }
+  .plate-body ul{
+    list-style:none;
+    margin:18px 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+  .plate-body li{
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    padding-left:18px;
+    position:relative;
+  }
+  .plate-body li::before{
+    content:"";
+    position:absolute;
+    left:0; top:0.5em;
+    width:8px; height:8px;
+    border:1.5px solid var(--accent);
+  }
+  .plate-foot{
+    margin-top:22px;
+    padding-top:16px;
+    border-top:1px dashed var(--hair);
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+  }
+  .plate-foot .from{ font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.06em;}
+  .plate-foot .price{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:1.15rem;
+    font-weight:600;
+  }
+  .plate-foot .time{
+    margin-top:6px;
+    font-size:0.78rem;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- Process ---------- */
+  .process{
+    margin-top:40px;
+    position:relative;
+  }
+  .process-track{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:0;
+    position:relative;
+  }
+  .process-track::before{
+    content:"";
+    position:absolute;
+    top:18px; left:5%; right:5%;
+    height:1px;
+    background:repeating-linear-gradient(90deg, var(--ink-faint) 0 6px, transparent 6px 12px);
+  }
+  .step{
+    padding-right:18px;
+    position:relative;
+  }
+  .step .dot{
+    width:36px; height:36px;
+    border:2px solid var(--ink);
+    background:var(--paper-raised);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"IBM Plex Mono", monospace;
+    font-weight:600;
+    font-size:0.85rem;
+    position:relative;
+    z-index:1;
+  }
+  .step h3{
+    margin-top:16px;
+    font-size:1.05rem;
+    letter-spacing:0.01em;
+  }
+  .step p{
+    margin-top:8px;
+    font-size:0.86rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Pricing spec table ---------- */
+  .spec-wrap{ margin-top:36px; overflow-x:auto; border:1px solid var(--hair);}
+  table.spec{
+    width:100%;
+    border-collapse:collapse;
+    min-width:640px;
+    font-size:0.92rem;
+  }
+  table.spec th{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    text-align:left;
+    padding:12px 16px;
+    background:var(--paper-raised);
+    border-bottom:1.5px solid var(--ink);
+  }
+  table.spec td{
+    padding:14px 16px;
+    border-bottom:1px solid var(--hair);
+    color:var(--ink-soft);
+    vertical-align:top;
+  }
+  table.spec tr:last-child td{ border-bottom:none; }
+  table.spec td.plan{
+    color:var(--ink);
+    font-weight:600;
+    white-space:nowrap;
+  }
+  table.spec td.price{
+    font-family:"IBM Plex Mono", monospace;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  .spec-note{
+    margin-top:12px;
+    font-size:0.78rem;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- Contact / work order ---------- */
+  .order{
+    margin-top:36px;
+    border:1.5px solid var(--ink);
+    background:var(--paper-raised);
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .order-left{
+    padding:32px;
+    border-right:1px solid var(--hair);
+  }
+  .order-left h3{ font-size:1.5rem; }
+  .order-left p{ margin-top:12px; color:var(--ink-soft); max-width:40ch; }
+  .order-actions{
+    margin-top:24px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .order-right{
+    padding:32px;
+  }
+  .field-row{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:6px 14px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.82rem;
+    padding:9px 0;
+    border-bottom:1px dashed var(--hair);
+  }
+  .field-row:last-child{ border-bottom:none; }
+  .field-row .k{ color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.05em; font-size:0.72rem; align-self:center;}
+  .field-row .v{ color:var(--ink); }
+  .field-row .v a{ color:var(--accent-ink); text-decoration:underline; text-decoration-color:var(--accent); }
+
+  .stamp-callout{
+    margin-top:20px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:2px solid var(--stamp);
+    color:var(--stamp);
+    padding:5px 10px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    transform: rotate(-2deg);
+  }
+
+  /* ---------- Footer title block ---------- */
+  footer.titleblock-bottom{
+    border-top:2px solid var(--ink);
+    background:var(--paper-raised);
+    padding-block:22px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:16px;
+  }
+  .footer-grid .cell .label{ margin-bottom:6px; }
+  .footer-grid .cell .val{ font-size:0.9rem; color:var(--ink-soft); }
+  .footer-bottom{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--hair);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.72rem;
+    color:var(--ink-faint);
+  }
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns:1fr; padding-block:44px 40px; }
+    .plates{ grid-template-columns:1fr; }
+    .signals{ grid-template-columns:1fr; }
+    .signals .cell{ border-left:none; border-top:1px solid var(--hair); }
+    .signals .cell:first-child{ border-top:none; }
+    .process-track{ grid-template-columns:1fr; gap:26px; }
+    .process-track::before{ display:none; }
+    .order{ grid-template-columns:1fr; }
+    .order-left{ border-right:none; border-bottom:1px solid var(--hair); }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+    nav.top{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="titleblock">
+  <div class="titleblock-inner">
+    <div class="wordmark">
+      <span class="mark"><span class="box">P</span>LANO</span>
+      <span class="sub">estudio&nbsp;web</span>
+    </div>
+    <nav class="top">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#precios">Precios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn-cta" href="#contacto">Pedir plano →</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div>
+      <h1>Tu negocio,<br>con un <em>plano</em><br>para internet.</h1>
+      <p class="lede">Diseñamos y construimos el sitio web de tu negocio: claro, rápido y hecho para que consigas clientes desde el primer día — sin plantillas genéricas ni promesas vagas.</p>
+      <div class="ctas">
+        <a class="btn-cta" href="#contacto">Solicitar diagnóstico gratis</a>
+        <a class="btn-cta ghost" href="#precios">Ver precios</a>
+      </div>
+      <p class="note">Diagnóstico de 15 minutos, sin costo ni compromiso.</p>
+    </div>
+
+    <svg class="diagram" viewBox="0 0 520 400" role="img" aria-label="Plano de un sitio web con anotaciones de medidas">
+      <!-- dimension: width -->
+      <line class="dim" x1="40" y1="24" x2="480" y2="24"/>
+      <line class="dim" x1="40" y1="18" x2="40" y2="30"/>
+      <line class="dim" x1="480" y1="18" x2="480" y2="30"/>
+      <text class="dim-text" x="230" y="18" text-anchor="middle">ANCHO 100%</text>
+
+      <!-- dimension: height -->
+      <line class="dim" x1="18" y1="40" x2="18" y2="376"/>
+      <line class="dim" x1="12" y1="40" x2="24" y2="40"/>
+      <line class="dim" x1="12" y1="376" x2="24" y2="376"/>
+      <text class="dim-text" x="18" y="210" text-anchor="middle" transform="rotate(-90 18 210)">ALTO AUTO</text>
+
+      <!-- browser frame -->
+      <rect class="paper-fill" x="40" y="40" width="440" height="336" stroke="var(--ink)" stroke-width="1.5"/>
+      <!-- chrome bar -->
+      <rect class="ink-fill" x="40" y="40" width="440" height="22"/>
+      <circle cx="54" cy="51" r="3.4" class="accent-fill"/>
+      <circle cx="66" cy="51" r="3.4" fill="var(--paper-raised)" opacity="0.6"/>
+      <circle cx="78" cy="51" r="3.4" fill="var(--paper-raised)" opacity="0.6"/>
+
+      <!-- nav row -->
+      <rect class="card-fill" x="52" y="74" width="416" height="26"/>
+      <rect class="ink-fill" x="62" y="83" width="46" height="8"/>
+      <rect class="accent-fill" x="410" y="81" width="48" height="12"/>
+
+      <!-- hero block -->
+      <rect class="card-fill" x="52" y="112" width="416" height="92"/>
+      <rect class="ink-fill" x="66" y="130" width="180" height="12"/>
+      <rect class="ink-fill" opacity="0.5" x="66" y="150" width="230" height="8"/>
+      <rect class="accent-fill" x="66" y="172" width="90" height="16"/>
+
+      <!-- three cards -->
+      <rect class="card-fill" x="52" y="216" width="130" height="86"/>
+      <rect class="card-fill" x="194" y="216" width="130" height="86"/>
+      <rect class="card-fill" x="336" y="216" width="132" height="86"/>
+      <rect class="ink-fill" opacity="0.55" x="64" y="230" width="30" height="30"/>
+      <rect class="ink-fill" opacity="0.55" x="206" y="230" width="30" height="30"/>
+      <rect class="ink-fill" opacity="0.55" x="348" y="230" width="30" height="30"/>
+      <rect class="ink-fill" opacity="0.35" x="64" y="270" width="90" height="7"/>
+      <rect class="ink-fill" opacity="0.35" x="206" y="270" width="90" height="7"/>
+      <rect class="ink-fill" opacity="0.35" x="348" y="270" width="90" height="7"/>
+
+      <!-- footer -->
+      <rect class="ink-fill" opacity="0.85" x="52" y="316" width="416" height="46"/>
+      <text class="dim-text" x="60" y="343" fill="var(--paper-raised)" opacity="0.8">CONTACTO · WHATSAPP · MAPA</text>
+
+      <!-- annotation callout -->
+      <line class="dim" x1="378" y1="184" x2="440" y2="260"/>
+      <circle cx="378" cy="184" r="2.4" fill="var(--accent)"/>
+      <text class="dim-text" x="444" y="264">LLAMADA A LA ACCIÓN</text>
+
+      <line class="dim" x1="120" y1="259" x2="170" y2="312"/>
+      <circle cx="120" cy="259" r="2.4" fill="var(--accent)"/>
+      <text class="dim-text" x="120" y="326" text-anchor="middle">3 SERVICIOS</text>
+    </svg>
+  </section>
+
+  <section class="signals-section">
+    <div class="signals">
+      <div class="cell">
+        <div class="num">01</div>
+        <p>La mayoría de tus clientes te buscan en Google o Instagram antes de escribirte — si no aparecés, eligen a otro.</p>
+      </div>
+      <div class="cell">
+        <div class="num">02</div>
+        <p>Un sitio propio da la credibilidad que un perfil de redes sociales no puede dar por sí solo.</p>
+      </div>
+      <div class="cell">
+        <div class="num">03</div>
+        <p>Con WhatsApp y mapa integrados, cada visita se convierte en un mensaje o una visita real.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="eyebrow"><span class="tag">Servicios</span><span class="rule"></span></div>
+    <h2 class="section-title">Tres planos, según lo que tu negocio necesita hoy</h2>
+    <p class="section-sub">Cada plan es un punto de partida — lo ajustamos a tu rubro (restaurante, clínica, taller, tienda, estudio) en la primera conversación.</p>
+
+    <div class="plates">
+      <article class="plate">
+        <div class="plate-head">
+          <span class="code mono">A-01</span>
+          <span class="flag">Para empezar</span>
+        </div>
+        <div class="plate-body">
+          <h3>Plano Esencial</h3>
+          <p class="for">Un negocio que aún no tiene sitio y necesita presencia profesional ya.</p>
+          <ul>
+            <li>Sitio de una página (landing) responsive</li>
+            <li>Botón de WhatsApp y mapa de ubicación</li>
+            <li>Dominio y hosting configurados</li>
+            <li>Formulario de contacto</li>
+          </ul>
+          <div class="plate-foot">
+            <div>
+              <div class="from">Desde</div>
+              <div class="price">USD 180</div>
+              <div class="time">Entrega en 5–7 días</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="plate featured">
+        <div class="plate-head">
+          <span class="code mono">A-02</span>
+          <span class="flag">Más elegido</span>
+        </div>
+        <div class="plate-body">
+          <h3>Plano Negocio</h3>
+          <p class="for">Un negocio que quiere mostrar servicios, precios y generar más consultas.</p>
+          <ul>
+            <li>Sitio de 4–6 páginas (inicio, servicios, nosotros, contacto)</li>
+            <li>SEO local básico (que te encuentren en tu ciudad)</li>
+            <li>Panel simple para editar textos y fotos vos mismo</li>
+            <li>Integración de reseñas y redes sociales</li>
+          </ul>
+          <div class="plate-foot">
+            <div>
+              <div class="from">Desde</div>
+              <div class="price">USD 420</div>
+              <div class="time">Entrega en 10–15 días</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="plate">
+        <div class="plate-head">
+          <span class="code mono">A-03</span>
+          <span class="flag">Para vender</span>
+        </div>
+        <div class="plate-body">
+          <h3>Plano Pro</h3>
+          <p class="for">Un negocio que necesita vender o agendar directamente desde el sitio.</p>
+          <ul>
+            <li>Tienda online o sistema de reservas/citas</li>
+            <li>Pasarela de pago integrada</li>
+            <li>SEO avanzado + panel de estadísticas</li>
+            <li>Mantenimiento mensual incluido</li>
+          </ul>
+          <div class="plate-foot">
+            <div>
+              <div class="from">Desde</div>
+              <div class="price">USD 850</div>
+              <div class="time">Entrega en 3–4 semanas</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="proceso">
+    <div class="eyebrow"><span class="tag">Proceso</span><span class="rule"></span></div>
+    <h2 class="section-title">Cómo pasamos de una idea a un sitio publicado</h2>
+    <p class="section-sub">Cinco pasos, siempre en este orden — para que sepas qué esperar en cada etapa.</p>
+
+    <div class="process">
+      <div class="process-track">
+        <div class="step">
+          <div class="dot">1</div>
+          <h3>Diagnóstico</h3>
+          <p>Llamada de 15 min: qué vendés, quién te compra y qué necesita mostrar tu sitio.</p>
+        </div>
+        <div class="step">
+          <div class="dot">2</div>
+          <h3>Propuesta y plano</h3>
+          <p>Boceto de las páginas, contenidos y precio cerrado — sin sorpresas después.</p>
+        </div>
+        <div class="step">
+          <div class="dot">3</div>
+          <h3>Construcción</h3>
+          <p>Diseño y desarrollo con 2 rondas de ajustes incluidas antes de la entrega.</p>
+        </div>
+        <div class="step">
+          <div class="dot">4</div>
+          <h3>Entrega</h3>
+          <p>Publicamos el sitio y te mostramos cómo editar textos, fotos y precios.</p>
+        </div>
+        <div class="step">
+          <div class="dot">5</div>
+          <h3>Crecimiento</h3>
+          <p>Soporte, mejoras de SEO y cambios según lo que tu negocio va necesitando.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="precios">
+    <div class="eyebrow"><span class="tag">Precios</span><span class="rule"></span></div>
+    <h2 class="section-title">Ficha técnica de precios</h2>
+    <p class="section-sub">Valores de referencia — se ajustan según el rubro, la cantidad de contenido y si ya tenés fotos y textos listos.</p>
+
+    <div class="spec-wrap">
+      <table class="spec">
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>Ideal para</th>
+            <th>Incluye</th>
+            <th>Tiempo</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="plan">Plano Esencial</td>
+            <td>Negocios sin sitio aún</td>
+            <td>1 página, WhatsApp, mapa, dominio y hosting</td>
+            <td>5–7 días</td>
+            <td class="price">USD 180</td>
+          </tr>
+          <tr>
+            <td class="plan">Plano Negocio</td>
+            <td>Servicios y más consultas</td>
+            <td>4–6 páginas, SEO local, panel de edición</td>
+            <td>10–15 días</td>
+            <td class="price">USD 420</td>
+          </tr>
+          <tr>
+            <td class="plan">Plano Pro</td>
+            <td>Venta o reservas online</td>
+            <td>Tienda/reservas, pagos, SEO avanzado</td>
+            <td>3–4 semanas</td>
+            <td class="price">USD 850</td>
+          </tr>
+          <tr>
+            <td class="plan">Mantenimiento</td>
+            <td>Cualquier sitio ya publicado</td>
+            <td>Cambios de contenido, copias de seguridad, soporte</td>
+            <td>Mensual</td>
+            <td class="price">USD 25/mes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="spec-note">* Precios ilustrativos en USD para que definas los tuyos — ajustalos a tu moneda, mercado y costos reales antes de publicar.</p>
+  </section>
+
+  <section id="contacto">
+    <div class="eyebrow"><span class="tag">Contacto</span><span class="rule"></span></div>
+    <h2 class="section-title">Pedí tu plano</h2>
+    <p class="section-sub">Contanos sobre tu negocio y te respondemos con una propuesta en menos de 24 horas.</p>
+
+    <div class="order">
+      <div class="order-left">
+        <h3>Orden de trabajo</h3>
+        <p>Escribinos por WhatsApp o correo con el nombre de tu negocio y qué te gustaría lograr con tu sitio.</p>
+        <div class="order-actions">
+          <a class="btn-cta" href="https://wa.me/TU_NUMERO?text=Hola%2C%20quiero%20un%20plano%20para%20mi%20sitio%20web" target="_blank" rel="noopener">Escribir por WhatsApp →</a>
+          <a class="btn-cta ghost" href="mailto:tu@correo.com?subject=Quiero%20un%20plano%20para%20mi%20sitio%20web">Escribir un correo →</a>
+        </div>
+        <div class="stamp-callout">Respuesta en 24h</div>
+      </div>
+      <div class="order-right">
+        <div class="field-row"><span class="k">Estudio</span><span class="v">Plano — sitios web</span></div>
+        <div class="field-row"><span class="k">WhatsApp</span><span class="v"><a href="https://wa.me/TU_NUMERO">+00 000 000 0000</a></span></div>
+        <div class="field-row"><span class="k">Correo</span><span class="v"><a href="mailto:tu@correo.com">tu@correo.com</a></span></div>
+        <div class="field-row"><span class="k">Zona</span><span class="v">Remoto — cualquier ciudad</span></div>
+        <div class="field-row"><span class="k">Horario</span><span class="v">Lun–Vie, 9:00–18:00</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="titleblock-bottom">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="cell">
+        <div class="label">Proyecto</div>
+        <div class="val">Sitios web para negocios</div>
+      </div>
+      <div class="cell">
+        <div class="label">Hoja</div>
+        <div class="val">1 de 1</div>
+      </div>
+      <div class="cell">
+        <div class="label">Escala</div>
+        <div class="val">1:1 — a tu medida</div>
+      </div>
+      <div class="cell">
+        <div class="label">Revisión</div>
+        <div class="val">A — 2026</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>PLANO ESTUDIO WEB</span>
+      <span>DIBUJADO CON CUIDADO, PUBLICADO A TIEMPO</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
