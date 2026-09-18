@@ -261,6 +261,50 @@
   .diagram .accent-fill{ fill:var(--accent); }
   .diagram .card-fill{ fill:var(--paper); stroke:var(--hair); stroke-width:1; }
 
+  /* ---------- Photo gallery ---------- */
+  .photo-grid{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:14px;
+  }
+  .photo{
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--hair);
+    border-radius:3px;
+    background:var(--paper-raised);
+  }
+  .photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .photo-wide{
+    grid-column:1 / -1;
+    aspect-ratio:21 / 7;
+  }
+  .photo:not(.photo-wide){
+    aspect-ratio:4 / 5;
+  }
+  .photo figcaption{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:10px 12px;
+    background:linear-gradient(0deg, rgba(10,14,20,0.82), rgba(10,14,20,0));
+    color:#F2F4EF;
+    font-size:0.8rem;
+    display:flex;
+    gap:8px;
+    align-items:baseline;
+  }
+  .photo figcaption .mono{
+    color:var(--accent);
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+  }
+
   /* ---------- Signal strip ---------- */
   .signals{
     display:grid;
@@ -549,9 +593,16 @@
     font-size:0.72rem;
     color:var(--ink-faint);
   }
+  .photo-credits{
+    margin:14px 0 0;
+    font-size:0.68rem;
+    color:var(--ink-faint);
+  }
 
   @media (max-width: 860px){
     .hero{ grid-template-columns:1fr; padding-block:44px 40px; }
+    .photo-grid{ grid-template-columns:repeat(2, 1fr); }
+    .photo-wide{ aspect-ratio:16 / 9; }
     .plates{ grid-template-columns:1fr; }
     .signals{ grid-template-columns:1fr; }
     .signals .cell{ border-left:none; border-top:1px solid var(--hair); }
@@ -652,6 +703,36 @@
       <circle cx="120" cy="259" r="2.4" fill="var(--accent)"/>
       <text class="dim-text" x="120" y="326" text-anchor="middle">0% COMISIÓN OTA</text>
     </svg>
+  </section>
+
+  <section id="destinos">
+    <div class="eyebrow"><span class="tag">Destinos</span><span class="rule"></span></div>
+    <h2 class="section-title">Costa Rica ya vende sola — mostrala como se debe</h2>
+    <p class="section-sub">Las mismas escenas que hoy le dan clics a Booking, llevando tráfico a tu propio sitio.</p>
+
+    <div class="photo-grid">
+      <figure class="photo photo-wide">
+        <img src="images/hero-arenal.jpg" alt="Volcán Arenal visto desde La Fortuna" loading="lazy">
+        <figcaption><span class="mono">01</span> La Fortuna — el volcán que todos quieren ver</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/card-toucan.jpg" alt="Tucán pico iris en la selva de Costa Rica" loading="lazy">
+        <figcaption><span class="mono">02</span> Fauna — tucanes en su hábitat</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/card-sloth.jpg" alt="Perezoso colgado de un árbol en Costa Rica" loading="lazy">
+        <figcaption><span class="mono">03</span> Perezosos a metros del sendero</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/card-beach.jpg" alt="Playa de Cahuita, costa caribeña de Costa Rica" loading="lazy">
+        <figcaption><span class="mono">04</span> Cahuita — costa caribeña</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/card-rainforest.jpg" alt="Bosque nuboso en Costa Rica" loading="lazy">
+        <figcaption><span class="mono">05</span> Bosque nuboso — turismo de naturaleza</figcaption>
+      </figure>
+    </div>
+    <p class="spec-note">Fotos de referencia con licencia abierta — reemplazalas por material propio de tu negocio en cuanto lo tengas.</p>
   </section>
 
   <section class="signals-section">
@@ -889,6 +970,7 @@
       <span>PLANO ESTUDIO WEB</span>
       <span>DIBUJADO CON CUIDADO, PUBLICADO A TIEMPO</span>
     </div>
+    <p class="photo-credits">Fotos: Bernard Gagnon (CC0) · Bernal Saborio (CC BY-SA 2.0) · Cephas (CC BY-SA 4.0) · costaricaparadise.org (CC BY-SA 4.0) — vía Wikimedia Commons.</p>
   </div>
 </footer>
 
