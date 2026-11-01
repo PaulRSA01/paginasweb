@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Plano — Webs para Turismo</title>
+<title>Eco Pulse Costa Rica — Webs para Turismo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -285,7 +285,14 @@
     grid-column:1 / -1;
     aspect-ratio:21 / 7;
   }
-  .photo:not(.photo-wide){
+  .photo-band{
+    grid-column:1 / -1;
+    aspect-ratio:21 / 9;
+  }
+  .photo-band img{
+    object-position:center 20%;
+  }
+  .photo:not(.photo-wide):not(.photo-band){
     aspect-ratio:4 / 5;
   }
   .photo figcaption{
@@ -603,6 +610,7 @@
     .hero{ grid-template-columns:1fr; padding-block:44px 40px; }
     .photo-grid{ grid-template-columns:repeat(2, 1fr); }
     .photo-wide{ aspect-ratio:16 / 9; }
+    .photo-band{ aspect-ratio:4 / 3; }
     .plates{ grid-template-columns:1fr; }
     .signals{ grid-template-columns:1fr; }
     .signals .cell{ border-left:none; border-top:1px solid var(--hair); }
@@ -621,8 +629,8 @@
 <header class="titleblock">
   <div class="titleblock-inner">
     <div class="wordmark">
-      <span class="mark"><span class="box">P</span>LANO</span>
-      <span class="sub">webs&nbsp;para&nbsp;turismo</span>
+      <span class="mark"><span class="box">E</span>CO&nbsp;PULSE</span>
+      <span class="sub">costa&nbsp;rica · webs&nbsp;para&nbsp;turismo</span>
     </div>
     <nav class="top">
       <a href="#servicios">Servicios</a>
@@ -630,7 +638,7 @@
       <a href="#precios">Precios</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <a class="btn-cta" href="#contacto">Pedir plano →</a>
+    <a class="btn-cta" href="#contacto">Pedir propuesta →</a>
   </div>
 </header>
 
@@ -731,6 +739,10 @@
         <img src="images/card-rainforest.jpg" alt="Bosque nuboso en Costa Rica" loading="lazy">
         <figcaption><span class="mono">05</span> Bosque nuboso — turismo de naturaleza</figcaption>
       </figure>
+      <figure class="photo photo-band">
+        <img src="images/card-agami-heron.jpg" alt="Garza agami (Agamia agami) cazando en un riacho de la selva de Sarapiquí, Costa Rica" loading="lazy">
+        <figcaption><span class="mono">06</span> Garza agami — el ave más esquiva del Caribe tico</figcaption>
+      </figure>
     </div>
     <p class="spec-note">Fotos de referencia con licencia abierta — reemplazalas por material propio de tu negocio en cuanto lo tengas.</p>
   </section>
@@ -754,7 +766,7 @@
 
   <section id="servicios">
     <div class="eyebrow"><span class="tag">Servicios</span><span class="rule"></span></div>
-    <h2 class="section-title">Tres planos, para dejar de depender de las OTAs</h2>
+    <h2 class="section-title">Tres planes, para dejar de depender de las OTAs</h2>
     <p class="section-sub">Cada plan se adapta a tu tipo de negocio turístico — hotel boutique, posada, hostal, cabañas, glamping o tour operador — en la primera conversación.</p>
 
     <div class="plates">
@@ -764,7 +776,7 @@
           <span class="flag">Para empezar</span>
         </div>
         <div class="plate-body">
-          <h3>Plano Esencial</h3>
+          <h3>Plan Esencial</h3>
           <p class="for">Un alojamiento o tour que recién empieza a tener presencia propia fuera de las OTAs.</p>
           <ul>
             <li>Sitio con galería de fotos y ubicación</li>
@@ -788,7 +800,7 @@
           <span class="flag">Más elegido</span>
         </div>
         <div class="plate-body">
-          <h3>Plano Negocio</h3>
+          <h3>Plan Negocio</h3>
           <p class="for">Un hotel, posada u operador que quiere reservas directas y mejor posición que sus competidores en Booking.</p>
           <ul>
             <li>Calendario de disponibilidad y formulario de reserva</li>
@@ -812,7 +824,7 @@
           <span class="flag">Reservas propias</span>
         </div>
         <div class="plate-body">
-          <h3>Plano Pro</h3>
+          <h3>Plan Pro</h3>
           <p class="for">Un negocio turístico listo para cobrar reservas online sin pagarle comisión a nadie.</p>
           <ul>
             <li>Motor de reservas propio con pago online</li>
@@ -886,21 +898,21 @@
         </thead>
         <tbody>
           <tr>
-            <td class="plan">Plano Esencial</td>
+            <td class="plan">Plan Esencial</td>
             <td>Alojamientos/tours sin sitio propio aún</td>
             <td>Galería, WhatsApp, ficha de precios, enlaces a tus OTAs</td>
             <td>5–7 días</td>
             <td class="price">USD 220</td>
           </tr>
           <tr>
-            <td class="plan">Plano Negocio</td>
+            <td class="plan">Plan Negocio</td>
             <td>Más reservas directas</td>
             <td>Calendario, formulario de reserva, SEO local, bilingüe</td>
             <td>12–18 días</td>
             <td class="price">USD 550</td>
           </tr>
           <tr>
-            <td class="plan">Plano Pro</td>
+            <td class="plan">Plan Pro</td>
             <td>Reservas y pagos sin OTA</td>
             <td>Motor de reservas propio, pagos, multilenguaje</td>
             <td>4–6 semanas</td>
@@ -921,7 +933,7 @@
 
   <section id="contacto">
     <div class="eyebrow"><span class="tag">Contacto</span><span class="rule"></span></div>
-    <h2 class="section-title">Dejá de pagar comisión — pedí tu plano</h2>
+    <h2 class="section-title">Dejá de pagar comisión — pedí tu propuesta</h2>
     <p class="section-sub">Contanos sobre tu alojamiento o tours y te respondemos con una propuesta en menos de 24 horas.</p>
 
     <div class="order">
@@ -929,13 +941,13 @@
         <h3>Orden de trabajo</h3>
         <p>Escribinos por WhatsApp o correo con el nombre de tu negocio turístico y qué te gustaría lograr con tu sitio.</p>
         <div class="order-actions">
-          <a class="btn-cta" href="https://wa.me/TU_NUMERO?text=Hola%2C%20quiero%20un%20plano%20para%20mi%20sitio%20de%20reservas" target="_blank" rel="noopener">Escribir por WhatsApp →</a>
-          <a class="btn-cta ghost" href="mailto:tu@correo.com?subject=Quiero%20un%20plano%20para%20mi%20sitio%20de%20reservas">Escribir un correo →</a>
+          <a class="btn-cta" href="https://wa.me/TU_NUMERO?text=Hola%2C%20quiero%20una%20propuesta%20para%20mi%20sitio%20de%20reservas" target="_blank" rel="noopener">Escribir por WhatsApp →</a>
+          <a class="btn-cta ghost" href="mailto:tu@correo.com?subject=Quiero%20una%20propuesta%20para%20mi%20sitio%20de%20reservas">Escribir un correo →</a>
         </div>
         <div class="stamp-callout">Respuesta en 24h</div>
       </div>
       <div class="order-right">
-        <div class="field-row"><span class="k">Estudio</span><span class="v">Plano — webs para turismo</span></div>
+        <div class="field-row"><span class="k">Estudio</span><span class="v">Eco Pulse Costa Rica — webs para turismo</span></div>
         <div class="field-row"><span class="k">WhatsApp</span><span class="v"><a href="https://wa.me/TU_NUMERO">+00 000 000 0000</a></span></div>
         <div class="field-row"><span class="k">Correo</span><span class="v"><a href="mailto:tu@correo.com">tu@correo.com</a></span></div>
         <div class="field-row"><span class="k">Zona</span><span class="v">Remoto — cualquier ciudad</span></div>
@@ -967,10 +979,10 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>PLANO ESTUDIO WEB</span>
+      <span>ECO PULSE COSTA RICA</span>
       <span>DIBUJADO CON CUIDADO, PUBLICADO A TIEMPO</span>
     </div>
-    <p class="photo-credits">Fotos: Bernard Gagnon (CC0) · Bernal Saborio (CC BY-SA 2.0) · Cephas (CC BY-SA 4.0) · costaricaparadise.org (CC BY-SA 4.0) — vía Wikimedia Commons.</p>
+    <p class="photo-credits">Fotos: Bernard Gagnon (CC0) · Bernal Saborío (CC BY-SA 2.0) · Cephas (CC BY-SA 4.0) · costaricaparadise.org (CC BY-SA 4.0) · lwolfartist (CC BY 2.0) — vía Wikimedia Commons.</p>
   </div>
 </footer>
 

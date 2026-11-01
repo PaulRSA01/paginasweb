@@ -1,8 +1,8 @@
-# Plano — Estudio Web
+# Eco Pulse Costa Rica — Estudio Web
 
-Landing page de ventas para un estudio freelance de creación de sitios web.
+Landing page de ventas de Eco Pulse Costa Rica, un estudio freelance que hace sitios y motores de reserva directa para negocios turísticos.
 
-Muestra los servicios (planes Esencial, Negocio y Pro), el proceso de trabajo, precios de referencia y datos de contacto.
+Muestra los servicios (planes Esencial, Negocio y Pro), una galería de destinos y fauna de Costa Rica, el proceso de trabajo, precios de referencia y datos de contacto.
 
 ## Estructura
 
